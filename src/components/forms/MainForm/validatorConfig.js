@@ -26,4 +26,7 @@ export default {
       clients.length > 0
     ),
   },
+  date: {
+    required,
+  },
 };
