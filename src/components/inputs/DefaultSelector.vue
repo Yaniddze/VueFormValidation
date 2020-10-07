@@ -1,8 +1,11 @@
 <template>
   <div>
+
     <label>
+
       {{ title }}
-      <select>
+
+      <select @change="handleValueChange">
         <option
           v-for="(item) in items"
           :key="item.title"
@@ -12,6 +15,7 @@
       </select>
 
     </label>
+
   </div>
 </template>
 
@@ -26,6 +30,16 @@
       title: {
         type: String,
       },
+    },
+
+    methods: {
+      handleValueChange(event) {
+        this.$emit('change', event.target.value);
+      },
+    },
+
+    mounted() {
+      this.$emit('change', this.items[0].title);
     },
   };
 </script>

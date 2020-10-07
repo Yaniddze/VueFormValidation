@@ -65,6 +65,7 @@
     />
 
     <DefaultSelector
+      @change="handleDoctorChange"
       :items="doctors"
       title="Лечащий врач"
     />
@@ -97,6 +98,7 @@
         phone: '',
         male: true,
         clientGroups: [],
+        doctor: '',
       };
     },
 
@@ -128,6 +130,10 @@
         } else {
           this.clientGroups.push(client);
         }
+      },
+
+      handleDoctorChange(title) {
+        this.doctor = title;
       },
     },
 
