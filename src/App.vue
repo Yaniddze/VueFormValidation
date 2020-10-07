@@ -1,30 +1,16 @@
 <template>
   <div id="app">
-    {{ name }}
-    <DefaultInput
-      title="Label"
-      @input="setName"
-    />
+    <MainForm />
   </div>
 </template>
 
 <script>
-  import DefaultInput from './components/inputs/DefaultInput.vue';
+  import MainForm from './components/forms/MainForm';
 
   export default {
     name: 'App',
     components: {
-      DefaultInput,
-    },
-    data() {
-      return {
-        name: '',
-      };
-    },
-    methods: {
-      setName(event) {
-        this.name = event.target.value;
-      },
+      MainForm,
     },
   };
 </script>
