@@ -3,7 +3,7 @@
     <div>
       {{ title }}
     </div>
-    <input class="input" @input="handleInput" />
+    <input :name="inputName" class="input" @input="handleInput" />
   </label>
 </template>
 
@@ -14,10 +14,16 @@
       title: {
         type: String,
       },
+      inputName: {
+        type: String,
+      },
     },
     methods: {
       handleInput(event) {
-        this.$emit('input', event);
+        this.$emit('input', {
+          name: event.target.name,
+          value: event.target.value,
+        });
       },
     },
   };
