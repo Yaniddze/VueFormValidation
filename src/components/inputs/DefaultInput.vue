@@ -1,10 +1,14 @@
 <template>
-  <label>
-    <div>
-      {{ title }}
-    </div>
-    <input :name="inputName" class="input" @input="handleInput" />
-  </label>
+  <div>
+    <label>
+      <div>
+        {{ title }}
+      </div>
+      <div class="wrapper">
+        <input :name="inputName" class="input" @input="handleInput" />
+      </div>
+    </label>
+  </div>
 </template>
 
 <script>
@@ -32,5 +36,15 @@
 <style scoped lang="scss">
   .input {
     padding: 10px;
+    width: 100%;
+  }
+
+  .wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  label {
+    width: 100%;
   }
 </style>

@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <MainForm
-      :client-group="groups"
-      :doctors="doctors"
-    />
+    <div class="modal">
+      <MainForm
+        :client-group="groups"
+        :doctors="doctors"
+      />
+    </div>
+
   </div>
 </template>
 
@@ -38,5 +41,18 @@
   #app {
     background: #E8F5E9;
     height: 100%;
+  }
+
+  .modal {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 10px;
+
+    padding: 10px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 </style>
