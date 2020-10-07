@@ -64,6 +64,11 @@
       :items="clientGroup"
     />
 
+    <DefaultSelector
+      :items="doctors"
+      title="Лечащий врач"
+    />
+
   </form>
 </template>
 
@@ -71,6 +76,7 @@
   import DefaultInput from '../../inputs/DefaultInput.vue';
   import SexInput from './SexInput.vue';
   import MultiSelector from '../../inputs/MultiSelector.vue';
+  import DefaultSelector from '../../inputs/DefaultSelector.vue';
 
   import validators from './validatorConfig';
 
@@ -80,6 +86,7 @@
       DefaultInput,
       SexInput,
       MultiSelector,
+      DefaultSelector,
     },
 
     data() {
@@ -95,6 +102,9 @@
 
     props: {
       clientGroup: {
+        type: Array,
+      },
+      doctors: {
         type: Array,
       },
     },
@@ -118,8 +128,6 @@
         } else {
           this.clientGroups.push(client);
         }
-
-        console.log(this.clientGroups);
       },
     },
 

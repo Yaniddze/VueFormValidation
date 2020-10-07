@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <MainForm :client-group="groups" />
+    <MainForm
+      :client-group="groups"
+      :doctors="doctors"
+    />
   </div>
 </template>
 
 <script>
   import MainForm from './components/forms/MainForm';
+
+  import doctorsConfig from './config/doctorsConfig';
   import clientGroups from './config/clientGroups';
 
   export default {
@@ -16,6 +21,7 @@
     data() {
       return {
         groups: clientGroups,
+        doctors: doctorsConfig,
       };
     },
   };
