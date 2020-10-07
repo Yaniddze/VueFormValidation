@@ -19,7 +19,6 @@
         <label>
           <input
             @click="handleItemChange(item)"
-            :v-model="item.checked"
             :checked="item.checked"
             type="checkbox"/>
           {{ item.title }}

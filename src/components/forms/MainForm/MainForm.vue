@@ -70,6 +70,17 @@
       title="Лечащий врач"
     />
 
+    <div>
+      <label>
+        Не отправлять СМС
+        <input
+          @click="dontSendSMS = !dontSendSMS"
+          v-model="dontSendSMS"
+          type="checkbox"
+        />
+      </label>
+    </div>
+
   </form>
 </template>
 
@@ -99,6 +110,7 @@
         male: true,
         clientGroups: [],
         doctor: '',
+        dontSendSMS: false,
       };
     },
 
