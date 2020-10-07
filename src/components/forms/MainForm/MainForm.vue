@@ -185,5 +185,7 @@
 </script>
 
 <style scoped>
-
+  form > div {
+    margin: 15px 0;
+  }
 </style>
