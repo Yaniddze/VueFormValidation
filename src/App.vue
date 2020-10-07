@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-    <MainForm />
+    <MainForm :client-group="groups" />
   </div>
 </template>
 
 <script>
   import MainForm from './components/forms/MainForm';
+  import clientGroups from './config/clientGroups';
 
   export default {
     name: 'App',
     components: {
       MainForm,
+    },
+    data() {
+      return {
+        groups: clientGroups,
+      };
     },
   };
 </script>

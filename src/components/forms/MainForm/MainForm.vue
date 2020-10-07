@@ -53,13 +53,17 @@
       title="Телефон"
       @input="handleInputChange"
     />
+
     <SexInput @input="handleSexChange" />
+
+    <MultiSelector :items="clientGroup.map(el => ({ ...el, checked: false, }))" />
   </form>
 </template>
 
 <script>
   import DefaultInput from '../../inputs/DefaultInput.vue';
   import SexInput from './SexInput.vue';
+  import MultiSelector from '../../inputs/MultiSelector.vue';
 
   import validators from './validatorConfig';
 
@@ -68,6 +72,7 @@
     components: {
       DefaultInput,
       SexInput,
+      MultiSelector,
     },
     data() {
       return {
@@ -77,6 +82,11 @@
         phone: '',
         male: true,
       };
+    },
+    props: {
+      clientGroup: {
+        type: Array,
+      },
     },
     validations: {
       ...validators,
