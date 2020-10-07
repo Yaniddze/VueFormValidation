@@ -1,12 +1,32 @@
 <template>
   <div id="app">
-    123
+    {{ name }}
+    <DefaultInput
+      title="Label"
+      @input="setName"
+    />
   </div>
 </template>
 
 <script>
+import DefaultInput from './components/inputs/DefaultInput.vue';
+
 export default {
   name: 'App',
+  components: {
+    DefaultInput,
+  },
+  data() {
+    return {
+      name: '11',
+    };
+  },
+  methods: {
+    setName(event) {
+      console.log(this);
+      this.name = event.target.value;
+    },
+  },
 };
 </script>
 
