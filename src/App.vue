@@ -9,25 +9,24 @@
 </template>
 
 <script>
-import DefaultInput from './components/inputs/DefaultInput.vue';
+  import DefaultInput from './components/inputs/DefaultInput.vue';
 
-export default {
-  name: 'App',
-  components: {
-    DefaultInput,
-  },
-  data() {
-    return {
-      name: '11',
-    };
-  },
-  methods: {
-    setName(event) {
-      console.log(this);
-      this.name = event.target.value;
+  export default {
+    name: 'App',
+    components: {
+      DefaultInput,
     },
-  },
-};
+    data() {
+      return {
+        name: '',
+      };
+    },
+    methods: {
+      setName(event) {
+        this.name = event.target.value;
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

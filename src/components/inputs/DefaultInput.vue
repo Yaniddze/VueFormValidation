@@ -8,19 +8,19 @@
 </template>
 
 <script>
-export default {
-  name: 'DefaultInput',
-  props: {
-    title: {
-      type: String,
+  export default {
+    name: 'DefaultInput',
+    props: {
+      title: {
+        type: String,
+      },
     },
-  },
-  methods: {
-    handleInput(event) {
-      this.$emit('input', event);
+    methods: {
+      handleInput(event) {
+        this.$emit('input', event);
+      },
     },
-  },
-};
+  };
 </script>
 
 <style scoped lang="scss">
