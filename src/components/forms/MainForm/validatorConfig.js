@@ -21,4 +21,9 @@ export default {
       /^7\d\d\d\d\d\d\d\d\d\d/.test(phone)
     ),
   },
+  clientGroups: {
+    countCheck: (clients) => (
+      clients.length > 0
+    ),
+  },
 };

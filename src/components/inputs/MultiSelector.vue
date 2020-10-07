@@ -10,7 +10,7 @@
 
     <div v-if="opened">
       <div
-        v-for="(item) in items"
+        v-for="(item) in localItems"
         :key="item.title"
         :value="item.title"
         class="item"
@@ -18,7 +18,7 @@
 
         <label>
           <input
-            @click="item.checked = !item.checked"
+            @click="handleItemChange(item)"
             :v-model="item.checked"
             :checked="item.checked"
             type="checkbox"/>
@@ -43,14 +43,37 @@
 
     data() {
       return {
-        selected: [],
         opened: false,
+        localItems: this.items.map((el) => ({ ...el, checked: false })),
       };
+    },
+
+    watch: {
+      someWatch() {
+        console.log(this.localItems);
+      },
     },
 
     methods: {
       handleChooseChange() {
         this.opened = !this.opened;
+      },
+      handleItemChange(item) {
+        this.localItems = this.localItems.map((el) => {
+          if (el.title === item.title) {
+            return {
+              title: item.title,
+              checked: !item.checked,
+            };
+          }
+
+          return el;
+        });
+
+        this.$emit('change', {
+          title: item.title,
+          checked: !item.checked,
+        });
       },
     },
   };

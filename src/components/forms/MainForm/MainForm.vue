@@ -56,7 +56,14 @@
 
     <SexInput @input="handleSexChange" />
 
-    <MultiSelector :items="clientGroup.map(el => ({ ...el, checked: false, }))" />
+    <div v-if="!$v.clientGroups.countCheck">
+      Поле обязательно
+    </div>
+    <MultiSelector
+      @change="handleClientChange"
+      :items="clientGroup"
+    />
+
   </form>
 </template>
 
@@ -74,6 +81,7 @@
       SexInput,
       MultiSelector,
     },
+
     data() {
       return {
         surname: '',
@@ -81,24 +89,40 @@
         middleName: '',
         phone: '',
         male: true,
+        clientGroups: [],
       };
     },
+
     props: {
       clientGroup: {
         type: Array,
       },
     },
+
     validations: {
       ...validators,
     },
+
     methods: {
       handleInputChange({ name, value }) {
         this[name] = value;
       },
+
       handleSexChange(male) {
         this.male = male;
       },
+
+      handleClientChange(client) {
+        if (!client.checked) {
+          this.clientGroups = this.clientGroups.filter((el) => el.title !== client.title);
+        } else {
+          this.clientGroups.push(client);
+        }
+
+        console.log(this.clientGroups);
+      },
     },
+
   };
 </script>
 
