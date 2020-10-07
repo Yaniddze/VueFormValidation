@@ -53,17 +53,21 @@
       title="Телефон"
       @input="handleInputChange"
     />
+    <SexInput @input="handleSexChange" />
   </form>
 </template>
 
 <script>
   import DefaultInput from '../../inputs/DefaultInput.vue';
+  import SexInput from './SexInput.vue';
+
   import validators from './validatorConfig';
 
   export default {
     name: 'MainForm',
     components: {
       DefaultInput,
+      SexInput,
     },
     data() {
       return {
@@ -71,6 +75,7 @@
         name: '',
         middleName: '',
         phone: '',
+        male: true,
       };
     },
     validations: {
@@ -79,6 +84,9 @@
     methods: {
       handleInputChange({ name, value }) {
         this[name] = value;
+      },
+      handleSexChange(male) {
+        this.male = male;
       },
     },
   };
