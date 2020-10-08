@@ -18,7 +18,7 @@ export default {
   phone: {
     required,
     phoneCheck: (phone) => (
-      /^7\d\d\d\d\d\d\d\d\d\d/.test(phone)
+      /^7\d.{10}$/.test(phone)
     ),
   },
   clientGroups: {
