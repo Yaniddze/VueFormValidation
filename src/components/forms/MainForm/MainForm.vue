@@ -125,10 +125,15 @@
       </label>
     </div>
 
+    <div
+      class="right-wrapper btn-wrapper"
+      @click="handleSubmit"
+    >
+      <SquareButton title="Далее" />
+    </div>
+
     <div>
-      <button @click="handleSubmit">
-        123
-      </button>
+      * - обязательные поля
     </div>
 
   </form>
@@ -140,6 +145,7 @@
   import DateTimeInput from '../../inputs/DateTimeInput.vue';
   import MultiSelector from '../../inputs/MultiSelector.vue';
   import DefaultSelector from '../../inputs/DefaultSelector.vue';
+  import SquareButton from '../../buttons/SquareButton.vue';
 
   import validators from './validatorConfig';
 
@@ -151,6 +157,7 @@
       MultiSelector,
       DefaultSelector,
       DateTimeInput,
+      SquareButton,
     },
 
     data() {
@@ -230,12 +237,24 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   form > div {
     margin: 15px 0;
   }
 
   .error {
     color: red;
+  }
+
+  .right-wrapper {
+    display: flex;
+
+    > * {
+      margin-left: auto;
+    }
+  }
+
+  .btn-wrapper {
+    margin-right: 10px;
   }
 </style>
