@@ -6,7 +6,13 @@
         class="choose"
         @click="handleChooseChange"
       >
-        {{ title }}
+        <div>
+          {{ computeTitle }}
+        </div>
+
+        <div v-html="arrow">
+        </div>
+
       </div>
     </div>
 
@@ -55,41 +61,59 @@
       return {
         opened: false,
         localItems: this.items.map((el) => ({ ...el, checked: false })),
+        arrow: '&#x2193;',
+        selected: [],
       };
     },
 
-    watch: {
-      someWatch() {
-        console.log(this.localItems);
+    computed: {
+      computeTitle() {
+        if (this.selected.length > 0) {
+          let result = '';
+
+          this.selected.forEach((el) => {
+            result += `${el.title}, `;
+          });
+
+          return result.slice(0, result.length - 2);
+        }
+
+        return this.title;
       },
     },
 
     methods: {
       handleChooseChange() {
         this.opened = !this.opened;
+        this.arrow = this.arrow === '&#x2193;' ? '&#x2191;' : '&#x2193;';
       },
       handleItemChange(item) {
+        const actualItem = {
+          title: item.title,
+          checked: !item.checked,
+        };
+
         this.localItems = this.localItems.map((el) => {
-          if (el.title === item.title) {
-            return {
-              title: item.title,
-              checked: !item.checked,
-            };
+          if (el.title === actualItem.title) {
+            return actualItem;
           }
 
           return el;
         });
 
-        this.$emit('change', {
-          title: item.title,
-          checked: !item.checked,
-        });
+        if (actualItem.checked) {
+          this.selected.push(actualItem);
+        } else {
+          this.selected = this.selected.filter((el) => el.title !== actualItem.title);
+        }
+
+        this.$emit('change', actualItem);
       },
     },
   };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   @keyframes HolderIn {
     0% {
       opacity: 0;
@@ -110,6 +134,11 @@
     padding: 5px;
     width: 100%;
     background: white;
+    display: flex;
+
+    > div:last-child {
+      margin-left: auto;
+    }
   }
 
   .normalizer {
@@ -117,9 +146,7 @@
   }
 
   .item {
-    border: 1px solid black;
     padding: 5px;
-    margin: 1px;
     width: 100%;
 
     background: white;
