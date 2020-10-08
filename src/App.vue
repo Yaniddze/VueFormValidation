@@ -12,6 +12,11 @@
         v-if="currentStep === 2"
         @submit="handleAddressSubmit"
       />
+      <PassportForm
+        v-if="currentStep === 3"
+        :document-types="documents"
+        @submit="handlePassportSubmit"
+      />
     </div>
 
   </div>
@@ -20,20 +25,24 @@
 <script>
   import AddressForm from './components/forms/AddressForm';
   import MainForm from './components/forms/MainForm';
+  import PassportForm from './components/forms/PassportForm';
 
   import doctorsConfig from './config/doctorsConfig';
   import clientGroups from './config/clientGroups';
+  import documentTypes from './config/documentTypes';
 
   export default {
     name: 'App',
     components: {
       AddressForm,
       MainForm,
+      PassportForm,
     },
     data() {
       return {
         groups: clientGroups,
         doctors: doctorsConfig,
+        documents: documentTypes,
         currentStep: 1,
         currentUser: {
           main: {
@@ -55,6 +64,13 @@
             city: '',
             region: '',
           },
+          passport: {
+            documentType: '',
+            serial: '',
+            number: '',
+            issued: '',
+            issueDate: '',
+          },
         },
       };
     },
@@ -68,6 +84,11 @@
       handleAddressSubmit(info) {
         this.currentUser.address = info;
         this.currentStep += 1;
+      },
+
+      handlePassportSubmit(info) {
+        this.currentUser.passport = info;
+
         console.log(this.currentUser);
       },
     },

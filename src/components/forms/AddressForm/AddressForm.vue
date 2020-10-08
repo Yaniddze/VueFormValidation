@@ -171,6 +171,10 @@
 </script>
 
 <style scoped lang="scss">
+  form > div > div {
+    padding: 10px 0;
+  }
+
   .error {
     color: red;
   }
