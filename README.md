@@ -1,5 +1,7 @@
 # client
 
+https://yaniddze.github.io/VueFormValidation/
+
 ## Project setup
 ```
 npm install
