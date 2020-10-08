@@ -1,19 +1,22 @@
 <template>
   <div id="app">
 
-    <div class="modal">
+    <div :class="currentStep === 1 ? 'show' : 'hide'">
       <MainForm
-        v-if="currentStep === 1"
         :client-group="groups"
         :doctors="doctors"
         @submit="handleMainSubmit"
       />
+    </div>
+
+    <div :class="currentStep === 2 ? 'show' : 'hide'">
       <AddressForm
-        v-if="currentStep === 2"
         @submit="handleAddressSubmit"
       />
+    </div>
+
+    <div :class="currentStep === 3 ? 'show' : 'hide'">
       <PassportForm
-        v-if="currentStep === 3"
         :document-types="documents"
         @submit="handlePassportSubmit"
       />
@@ -104,12 +107,34 @@
     background: #E8F5E9;
   }
 
-  .modal {
+  .hide {
+    display: none;
+  }
+
+  @keyframes Show {
+    0% {
+      display: none;
+      transform: translate(-1000%, 150%);
+    }
+
+    80% {
+      display: block;
+      transform: translate(-50%, -55%);
+    }
+
+    100% {
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .show {
     margin: 0 10px;
+
+    transition: .2s all ease;
   }
 
   @media(min-width: 600px) {
-    .modal {
+    .show {
       position: absolute;
       width: 500px;
       margin: 30px 0;
@@ -122,6 +147,8 @@
 
       padding: 10px;
       box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+      animation: .5s Show normal;
     }
   }
 
