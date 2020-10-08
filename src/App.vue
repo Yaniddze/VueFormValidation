@@ -5,6 +5,7 @@
       <MainForm
         :client-group="groups"
         :doctors="doctors"
+        @submit="handleFirstSubmit"
       />
     </div>
 
@@ -26,7 +27,24 @@
       return {
         groups: clientGroups,
         doctors: doctorsConfig,
+        currentUser: {
+          surname: '',
+          name: '',
+          middleName: '',
+          phone: '',
+          male: true,
+          clientGroups: [],
+          doctor: '',
+          dontSendSMS: false,
+          date: '',
+        },
       };
+    },
+
+    methods: {
+      handleFirstSubmit(info) {
+        this.currentUser = info;
+      },
     },
   };
 </script>
@@ -48,6 +66,7 @@
     .modal {
       position: absolute;
       width: 500px;
+      margin: 30px 0;
 
       top: 50%;
       left: 50%;
