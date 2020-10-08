@@ -5,14 +5,16 @@
 
       {{ title }}
 
-      <select @change="handleValueChange">
-        <option
-          v-for="(item) in items"
-          :key="item.title"
-        >
-          {{ item.title }}
-        </option>
-      </select>
+      <div>
+        <select @change="handleValueChange">
+          <option
+            v-for="(item) in items"
+            :key="item.title"
+          >
+            {{ item.title }}
+          </option>
+        </select>
+      </div>
 
     </label>
 
@@ -44,6 +46,11 @@
   };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  select {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+  }
 </style>
