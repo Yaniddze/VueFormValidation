@@ -1,6 +1,6 @@
 <template>
   <div>
-    Пол:
+    Пол
     <div>
 
       <label>

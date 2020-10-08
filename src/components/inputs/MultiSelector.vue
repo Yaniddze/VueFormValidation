@@ -1,30 +1,38 @@
 <template>
-  <div>
+  <div class="main">
 
-    <div
-      class="choose"
-      @click="handleChooseChange"
-    >
-      {{ title }}
+    <div class="normalizer">
+      <div
+        class="choose"
+        @click="handleChooseChange"
+      >
+        {{ title }}
+      </div>
     </div>
 
-    <div v-if="opened">
+    <div v-if="opened" class="item-holder">
+
       <div
+        class="normalizer"
         v-for="(item) in localItems"
         :key="item.title"
-        :value="item.title"
-        class="item"
       >
+        <div
+          :value="item.title"
+          class="item"
+        >
 
-        <label>
-          <input
-            @click="handleItemChange(item)"
-            :checked="item.checked"
-            type="checkbox"/>
-          {{ item.title }}
-        </label>
+          <label>
+            <input
+              @click="handleItemChange(item)"
+              :checked="item.checked"
+              type="checkbox"/>
+            {{ item.title }}
+          </label>
 
+        </div>
       </div>
+
     </div>
 
   </div>
@@ -82,15 +90,45 @@
 </script>
 
 <style scoped>
+  @keyframes HolderIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .main {
+    width: 100%;
+    position: relative;
+  }
+
   .choose {
     border: 1px solid black;
     padding: 5px;
-    width: auto;
+    width: 100%;
+    background: white;
+  }
+
+  .normalizer {
+    display: flex;
   }
 
   .item {
     border: 1px solid black;
     padding: 5px;
     margin: 1px;
+    width: 100%;
+
+    background: white;
+  }
+
+  .item-holder {
+    position: absolute;
+    width: 100%;
+
+    animation: HolderIn .2s normal;
   }
 </style>

@@ -25,7 +25,7 @@
     color: #000;
     box-shadow: 3px 3px #3a7d3d;
     transition: .2s all ease;
-    font-size: 15px;
+    font-size: 16px;
     width: 100%;
     margin: 10px;
 
