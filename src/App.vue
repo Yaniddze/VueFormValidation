@@ -1,6 +1,13 @@
 <template>
   <div id="app">
 
+    <div v-if="showAlert">
+      <AlertMessage
+        @click="handleAlertSubmit"
+        message="Пользователь создан"
+      />
+    </div>
+
     <div :class="currentStep === 1 ? 'show' : 'hide'">
       <MainForm
         :client-group="groups"
@@ -30,6 +37,8 @@
   import MainForm from './components/forms/MainForm';
   import PassportForm from './components/forms/PassportForm';
 
+  import AlertMessage from './components/AlertMessage.vue';
+
   import doctorsConfig from './config/doctorsConfig';
   import clientGroups from './config/clientGroups';
   import documentTypes from './config/documentTypes';
@@ -40,12 +49,14 @@
       AddressForm,
       MainForm,
       PassportForm,
+      AlertMessage,
     },
     data() {
       return {
         groups: clientGroups,
         doctors: doctorsConfig,
         documents: documentTypes,
+        showAlert: false,
         currentStep: 1,
         currentUser: {
           main: {
@@ -92,7 +103,11 @@
       handlePassportSubmit(info) {
         this.currentUser.passport = info;
 
-        console.log(this.currentUser);
+        this.showAlert = true;
+      },
+
+      handleAlertSubmit() {
+        this.showAlert = false;
       },
     },
   };
