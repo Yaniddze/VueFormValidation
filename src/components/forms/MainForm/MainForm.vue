@@ -2,138 +2,138 @@
   <form>
 
     <div>
-      <div v-if="submitted" class="error">
-        <div v-if="!$v.surname.required">
-          Поле обязательно
+      <div>
+        <div v-if="submitted" class="error">
+          <div v-if="!$v.surname.required">
+            Поле обязательно
+          </div>
+          <div v-if="!$v.surname.minLength">
+            Минимальная длинна: {{ $v.surname.$params.minLength.min }}
+          </div>
+          <div v-if="!$v.surname.maxLength">
+            Минимальная длинна: {{ $v.surname.$params.maxLength.max }}
+          </div>
         </div>
-        <div v-if="!$v.surname.minLength">
-          Минимальная длинна: {{ $v.surname.$params.minLength.min }}
-        </div>
-        <div v-if="!$v.surname.maxLength">
-          Минимальная длинна: {{ $v.surname.$params.maxLength.max }}
-        </div>
-      </div>
 
-      <DefaultInput
-        input-name="surname"
-        title="Фамилия*"
-        @input="handleInputChange"
-      />
-    </div>
-
-    <div>
-      <div v-if="submitted" class="error">
-        <div v-if="!$v.name.required">
-          Поле обязательно
-        </div>
-        <div v-if="!$v.name.minLength">
-          Минимальная длинна: {{ $v.name.$params.minLength.min }}
-        </div>
-        <div v-if="!$v.name.maxLength">
-          Минимальная длинна: {{ $v.name.$params.maxLength.max }}
-        </div>
-      </div>
-
-      <DefaultInput
-        input-name="name"
-        title="Имя*"
-        @input="handleInputChange"
-      />
-    </div>
-
-    <div>
-      <div v-if="submitted" class="error">
-        <div v-if="!$v.middleName.minLength">
-          Минимальная длинна: {{ $v.middleName.$params.minLength.min }}
-        </div>
-        <div v-if="!$v.middleName.maxLength">
-          Минимальная длинна: {{ $v.middleName.$params.maxLength.max }}
-        </div>
-      </div>
-
-      <DefaultInput
-        input-name="middleName"
-        title="Отчетсво"
-        @input="handleInputChange"
-      />
-    </div>
-
-    <div>
-      <div v-if="submitted" class="error">
-        <div v-if="!$v.date.required">
-          Поле обязательно
-        </div>
-      </div>
-
-      <DateTimeInput
-        title="Дата рождения*"
-        @change="handleDateChange"
-      />
-    </div>
-
-    <div>
-      <div v-if="submitted" class="error">
-        <div v-if="!$v.phone.required">
-          Поле обязательно
-        </div>
-        <div v-if="!$v.phone.phoneCheck">
-          Неверный формат
-        </div>
-      </div>
-
-      <DefaultInput
-        input-name="phone"
-        title="Телефон*"
-        @input="handleInputChange"
-      />
-    </div>
-
-    <div>
-      <SexInput @input="handleSexChange" />
-    </div>
-
-    <div>
-      <div v-if="submitted" class="error">
-        <div v-if="!$v.clientGroups.countCheck">
-          Поле обязательно
-        </div>
-      </div>
-
-      <MultiSelector
-        title="Группа клиентов*"
-        @change="handleClientChange"
-        :items="clientGroup"
-      />
-    </div>
-
-    <div>
-      <DefaultSelector
-        @change="handleDoctorChange"
-        :items="doctors"
-        title="Лечащий врач"
-      />
-    </div>
-
-    <div>
-      <label>
-        Не отправлять СМС
-        <input
-          @click="dontSendSMS = !dontSendSMS"
-          v-model="dontSendSMS"
-          type="checkbox"
+        <DefaultInput
+          input-name="surname"
+          title="Фамилия*"
+          @input="handleInputChange"
         />
-      </label>
-    </div>
+      </div>
 
-    <div
-      class="right-wrapper btn-wrapper"
-      @click="handleSubmit"
-    >
-      <SquareButton title="Далее" />
+      <div>
+        <div v-if="submitted" class="error">
+          <div v-if="!$v.name.required">
+            Поле обязательно
+          </div>
+          <div v-if="!$v.name.minLength">
+            Минимальная длинна: {{ $v.name.$params.minLength.min }}
+          </div>
+          <div v-if="!$v.name.maxLength">
+            Минимальная длинна: {{ $v.name.$params.maxLength.max }}
+          </div>
+        </div>
+
+        <DefaultInput
+          input-name="name"
+          title="Имя*"
+          @input="handleInputChange"
+        />
+      </div>
+
+      <div>
+        <div v-if="submitted" class="error">
+          <div v-if="!$v.middleName.minLength">
+            Минимальная длинна: {{ $v.middleName.$params.minLength.min }}
+          </div>
+          <div v-if="!$v.middleName.maxLength">
+            Минимальная длинна: {{ $v.middleName.$params.maxLength.max }}
+          </div>
+        </div>
+
+        <DefaultInput
+          input-name="middleName"
+          title="Отчетсво"
+          @input="handleInputChange"
+        />
+      </div>
+
+      <div>
+        <div v-if="submitted" class="error">
+          <div v-if="!$v.date.required">
+            Поле обязательно
+          </div>
+        </div>
+
+        <DateTimeInput
+          title="Дата рождения*"
+          @change="handleDateChange"
+        />
+      </div>
     </div>
 
     <div>
-      * - обязательные поля
+      <div>
+        <div v-if="submitted" class="error">
+          <div v-if="!$v.phone.required">
+            Поле обязательно
+          </div>
+          <div v-if="!$v.phone.phoneCheck">
+            Неверный формат
+          </div>
+        </div>
+
+        <DefaultInput
+          input-name="phone"
+          title="Телефон*"
+          @input="handleInputChange"
+        />
+      </div>
+
+      <div>
+        <SexInput @input="handleSexChange" />
+      </div>
+
+      <div>
+        <div v-if="submitted" class="error">
+          <div v-if="!$v.clientGroups.countCheck">
+            Поле обязательно
+          </div>
+        </div>
+
+        <MultiSelector
+          title="Группа клиентов*"
+          @change="handleClientChange"
+          :items="clientGroup"
+        />
+      </div>
+
+      <div>
+        <DefaultSelector
+          @change="handleDoctorChange"
+          :items="doctors"
+          title="Лечащий врач"
+        />
+      </div>
+
+      <div>
+        <label>
+          Не отправлять СМС
+          <input
+            @click="dontSendSMS = !dontSendSMS"
+            v-model="dontSendSMS"
+            type="checkbox"
+          />
+        </label>
+      </div>
+
+      <div
+        class="right-wrapper btn-wrapper"
+        @click="handleSubmit"
+      >
+        <SquareButton title="Далее" />
+      </div>
     </div>
 
   </form>
@@ -238,7 +238,7 @@
 </script>
 
 <style scoped lang="scss">
-  form > div {
+  form > div > div {
     margin: 15px 0;
   }
 
@@ -256,5 +256,15 @@
 
   .btn-wrapper {
     margin-right: 10px;
+  }
+
+  @media(min-width: 900px) {
+    form {
+      display: flex;
+
+      > div:last-child {
+        margin-left: 20px;
+      }
+    }
   }
 </style>
