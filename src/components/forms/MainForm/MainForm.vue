@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Основные данные (1/3)</h1>
+    <div class="title">
+      Основные данные (1/3)
+    </div>
     <form>
       <div>
         <div>
@@ -12,7 +14,7 @@
               Минимальная длинна: {{ $v.surname.$params.minLength.min }}
             </div>
             <div v-if="!$v.surname.maxLength">
-              Минимальная длинна: {{ $v.surname.$params.maxLength.max }}
+              Максиальная длинна: {{ $v.surname.$params.maxLength.max }}
             </div>
           </div>
 
@@ -32,7 +34,7 @@
               Минимальная длинна: {{ $v.name.$params.minLength.min }}
             </div>
             <div v-if="!$v.name.maxLength">
-              Минимальная длинна: {{ $v.name.$params.maxLength.max }}
+              Максиальная длинна: {{ $v.name.$params.maxLength.max }}
             </div>
           </div>
 
@@ -49,7 +51,7 @@
               Минимальная длинна: {{ $v.middleName.$params.minLength.min }}
             </div>
             <div v-if="!$v.middleName.maxLength">
-              Минимальная длинна: {{ $v.middleName.$params.maxLength.max }}
+              Максиальная длинна: {{ $v.middleName.$params.maxLength.max }}
             </div>
           </div>
 
@@ -151,7 +153,7 @@
   import DefaultSelector from '../../inputs/DefaultSelector.vue';
   import SquareButton from '../../buttons/SquareButton.vue';
 
-  import validators from './validatorConfig';
+  import validators from './validationConfig';
 
   export default {
     name: 'MainForm',
@@ -260,6 +262,11 @@
 
   .btn-wrapper {
     margin-right: 10px;
+  }
+
+  .title {
+    font-size: 46px;
+    font-weight: bold;
   }
 
   @media(min-width: 900px) {

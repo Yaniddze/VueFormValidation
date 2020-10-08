@@ -3,9 +3,14 @@
 
     <div class="modal">
       <MainForm
+        v-if="currentStep === 1"
         :client-group="groups"
         :doctors="doctors"
-        @submit="handleFirstSubmit"
+        @submit="handleMainSubmit"
+      />
+      <AddressForm
+        v-if="currentStep === 2"
+        @submit="handleAddressSubmit"
       />
     </div>
 
@@ -13,6 +18,7 @@
 </template>
 
 <script>
+  import AddressForm from './components/forms/AddressForm';
   import MainForm from './components/forms/MainForm';
 
   import doctorsConfig from './config/doctorsConfig';
@@ -21,29 +27,48 @@
   export default {
     name: 'App',
     components: {
+      AddressForm,
       MainForm,
     },
     data() {
       return {
         groups: clientGroups,
         doctors: doctorsConfig,
+        currentStep: 1,
         currentUser: {
-          surname: '',
-          name: '',
-          middleName: '',
-          phone: '',
-          male: true,
-          clientGroups: [],
-          doctor: '',
-          dontSendSMS: false,
-          date: '',
+          main: {
+            surname: '',
+            name: '',
+            middleName: '',
+            phone: '',
+            male: true,
+            clientGroups: [],
+            doctor: '',
+            dontSendSMS: false,
+            date: '',
+          },
+          address: {
+            house: '',
+            street: '',
+            index: '',
+            country: '',
+            city: '',
+            region: '',
+          },
         },
       };
     },
 
     methods: {
-      handleFirstSubmit(info) {
-        this.currentUser = info;
+      handleMainSubmit(info) {
+        this.currentUser.main = info;
+        this.currentStep += 1;
+      },
+
+      handleAddressSubmit(info) {
+        this.currentUser.address = info;
+        this.currentStep += 1;
+        console.log(this.currentUser);
       },
     },
   };

@@ -2,8 +2,8 @@ import { required, minLength, maxLength } from 'vuelidate/src/validators';
 
 export default {
   index: {
-    check: (val) => (
-      /^\d{6}$/.test(val)
+    formatCheck: (val) => (
+      /^\d{6}$/.test(val) || val === ''
     ),
   },
   country: {
