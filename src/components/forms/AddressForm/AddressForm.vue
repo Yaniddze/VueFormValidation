@@ -23,10 +23,10 @@
         <div>
           <div v-if="submitted" class="error">
             <div v-if="!$v.country.minLength">
-              Минимальная длинна: {{ $v.country.$params.minLength.min }}
+              Минимальная длина: {{ $v.country.$params.minLength.min }}
             </div>
             <div v-if="!$v.country.maxLength">
-              Максимальная длинна: {{ $v.country.$params.maxLength.max }}
+              Максимальная длина: {{ $v.country.$params.maxLength.max }}
             </div>
           </div>
           <DefaultInput
@@ -39,10 +39,10 @@
         <div>
           <div v-if="submitted" class="error">
             <div v-if="!$v.region.minLength">
-              Минимальная длинна: {{ $v.region.$params.minLength.min }}
+              Минимальная длина: {{ $v.region.$params.minLength.min }}
             </div>
             <div v-if="!$v.region.maxLength">
-              Максимальная длинна: {{ $v.region.$params.maxLength.max }}
+              Максимальная длина: {{ $v.region.$params.maxLength.max }}
             </div>
           </div>
           <DefaultInput
@@ -62,10 +62,10 @@
               Поле обязательно
             </div>
             <div v-if="!$v.city.minLength">
-              Минимальная длинна: {{ $v.city.$params.minLength.min }}
+              Минимальная длина: {{ $v.city.$params.minLength.min }}
             </div>
             <div v-if="!$v.city.maxLength">
-              Максимальная длинна: {{ $v.city.$params.maxLength.max }}
+              Максимальная длина: {{ $v.city.$params.maxLength.max }}
             </div>
           </div>
           <DefaultInput
@@ -78,10 +78,10 @@
         <div>
           <div v-if="submitted" class="error">
             <div v-if="!$v.street.minLength">
-              Минимальная длинна: {{ $v.street.$params.minLength.min }}
+              Минимальная длина: {{ $v.street.$params.minLength.min }}
             </div>
             <div v-if="!$v.street.maxLength">
-              Максимальная длинна: {{ $v.street.$params.maxLength.max }}
+              Максимальная длина: {{ $v.street.$params.maxLength.max }}
             </div>
           </div>
           <DefaultInput
@@ -94,7 +94,7 @@
         <div>
           <div v-if="submitted" class="error">
             <div v-if="!$v.house.maxLength">
-              Максимальная длинна: {{ $v.house.$params.maxLength.max }}
+              Максимальная длина: {{ $v.house.$params.maxLength.max }}
             </div>
           </div>
           <DefaultInput

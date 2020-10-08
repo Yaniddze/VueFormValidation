@@ -11,10 +11,10 @@
               Поле обязательно
             </div>
             <div v-if="!$v.surname.minLength">
-              Минимальная длинна: {{ $v.surname.$params.minLength.min }}
+              Минимальная длина: {{ $v.surname.$params.minLength.min }}
             </div>
             <div v-if="!$v.surname.maxLength">
-              Максиальная длинна: {{ $v.surname.$params.maxLength.max }}
+              Максиальная длина: {{ $v.surname.$params.maxLength.max }}
             </div>
           </div>
 
@@ -31,10 +31,10 @@
               Поле обязательно
             </div>
             <div v-if="!$v.name.minLength">
-              Минимальная длинна: {{ $v.name.$params.minLength.min }}
+              Минимальная длина: {{ $v.name.$params.minLength.min }}
             </div>
             <div v-if="!$v.name.maxLength">
-              Максиальная длинна: {{ $v.name.$params.maxLength.max }}
+              Максиальная длина: {{ $v.name.$params.maxLength.max }}
             </div>
           </div>
 
@@ -48,10 +48,10 @@
         <div>
           <div v-if="submitted" class="error">
             <div v-if="!$v.middleName.minLength">
-              Минимальная длинна: {{ $v.middleName.$params.minLength.min }}
+              Минимальная длина: {{ $v.middleName.$params.minLength.min }}
             </div>
             <div v-if="!$v.middleName.maxLength">
-              Максиальная длинна: {{ $v.middleName.$params.maxLength.max }}
+              Максиальная длина: {{ $v.middleName.$params.maxLength.max }}
             </div>
           </div>
 
