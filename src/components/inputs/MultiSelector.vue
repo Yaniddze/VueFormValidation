@@ -5,7 +5,7 @@
       class="choose"
       @click="handleChooseChange"
     >
-      Выбери меня
+      {{ title }}
     </div>
 
     <div v-if="opened">
@@ -37,6 +37,9 @@
     props: {
       items: {
         type: Array,
+      },
+      title: {
+        type: String,
       },
     },
 

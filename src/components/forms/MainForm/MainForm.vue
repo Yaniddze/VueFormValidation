@@ -2,46 +2,55 @@
   <form>
 
     <div>
-      <div v-if="!$v.surname.required">
-        Поле обязательно
+      <div v-if="submitted" class="error">
+        <div v-if="!$v.surname.required">
+          Поле обязательно
+        </div>
+        <div v-if="!$v.surname.minLength">
+          Минимальная длинна: {{ $v.surname.$params.minLength.min }}
+        </div>
+        <div v-if="!$v.surname.maxLength">
+          Минимальная длинна: {{ $v.surname.$params.maxLength.max }}
+        </div>
       </div>
-      <div v-if="!$v.surname.minLength">
-        Минимальная длинна: {{ $v.surname.$params.minLength.min }}
-      </div>
-      <div v-if="!$v.surname.maxLength">
-        Минимальная длинна: {{ $v.surname.$params.maxLength.max }}
-      </div>
+
       <DefaultInput
         input-name="surname"
-        title="Фамилия"
+        title="Фамилия*"
         @input="handleInputChange"
       />
     </div>
 
     <div>
-      <div v-if="!$v.name.required">
-        Поле обязательно
+      <div v-if="submitted" class="error">
+        <div v-if="!$v.name.required">
+          Поле обязательно
+        </div>
+        <div v-if="!$v.name.minLength">
+          Минимальная длинна: {{ $v.name.$params.minLength.min }}
+        </div>
+        <div v-if="!$v.name.maxLength">
+          Минимальная длинна: {{ $v.name.$params.maxLength.max }}
+        </div>
       </div>
-      <div v-if="!$v.name.minLength">
-        Минимальная длинна: {{ $v.name.$params.minLength.min }}
-      </div>
-      <div v-if="!$v.name.maxLength">
-        Минимальная длинна: {{ $v.name.$params.maxLength.max }}
-      </div>
+
       <DefaultInput
         input-name="name"
-        title="Имя"
+        title="Имя*"
         @input="handleInputChange"
       />
     </div>
 
     <div>
-      <div v-if="!$v.middleName.minLength">
-        Минимальная длинна: {{ $v.middleName.$params.minLength.min }}
+      <div v-if="submitted" class="error">
+        <div v-if="!$v.middleName.minLength">
+          Минимальная длинна: {{ $v.middleName.$params.minLength.min }}
+        </div>
+        <div v-if="!$v.middleName.maxLength">
+          Минимальная длинна: {{ $v.middleName.$params.maxLength.max }}
+        </div>
       </div>
-      <div v-if="!$v.middleName.maxLength">
-        Минимальная длинна: {{ $v.middleName.$params.maxLength.max }}
-      </div>
+
       <DefaultInput
         input-name="middleName"
         title="Отчетсво"
@@ -50,25 +59,31 @@
     </div>
 
     <div>
-      <div v-if="!$v.date.required">
-        Поле обязательно
+      <div v-if="submitted" class="error">
+        <div v-if="!$v.date.required">
+          Поле обязательно
+        </div>
       </div>
+
       <DateTimeInput
-        title="Дата рождения"
+        title="Дата рождения*"
         @change="handleDateChange"
       />
     </div>
 
     <div>
-      <div v-if="!$v.phone.required">
-        Поле обязательно
+      <div v-if="submitted" class="error">
+        <div v-if="!$v.phone.required">
+          Поле обязательно
+        </div>
+        <div v-if="!$v.phone.phoneCheck">
+          Неверный формат
+        </div>
       </div>
-      <div v-if="!$v.phone.phoneCheck">
-        Неверный формат
-      </div>
+
       <DefaultInput
         input-name="phone"
-        title="Телефон"
+        title="Телефон*"
         @input="handleInputChange"
       />
     </div>
@@ -78,10 +93,14 @@
     </div>
 
     <div>
-      <div v-if="!$v.clientGroups.countCheck">
-        Поле обязательно
+      <div v-if="submitted" class="error">
+        <div v-if="!$v.clientGroups.countCheck">
+          Поле обязательно
+        </div>
       </div>
+
       <MultiSelector
+        title="Группа клиентов*"
         @change="handleClientChange"
         :items="clientGroup"
       />
@@ -104,6 +123,12 @@
           type="checkbox"
         />
       </label>
+    </div>
+
+    <div>
+      <button @click="handleSubmit">
+        123
+      </button>
     </div>
 
   </form>
@@ -139,6 +164,7 @@
         doctor: '',
         dontSendSMS: false,
         date: '',
+        submitted: false,
       };
     },
 
@@ -179,6 +205,26 @@
       handleDateChange(date) {
         this.date = date;
       },
+
+      handleSubmit(event) {
+        if (this.$v.$anyError) {
+          this.$emit('submit', {
+            surname: this.surname,
+            name: this.name,
+            middleName: this.middleName,
+            phone: this.phone,
+            male: this.male,
+            clientGroups: this.clientGroups,
+            doctor: this.doctor,
+            dontSendSMS: this.dontSendSMS,
+            birthDate: this.date,
+          });
+        } else {
+          this.submitted = true;
+        }
+
+        event.preventDefault();
+      },
     },
 
   };
@@ -187,5 +233,9 @@
 <style scoped>
   form > div {
     margin: 15px 0;
+  }
+
+  .error {
+    color: red;
   }
 </style>
