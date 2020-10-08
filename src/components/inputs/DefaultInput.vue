@@ -38,6 +38,7 @@
     padding: 10px;
     width: 100%;
     font-size: 16px;
+    margin-top: 10px;
   }
 
   .wrapper {
