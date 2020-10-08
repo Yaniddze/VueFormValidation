@@ -122,10 +122,6 @@
     background: #E8F5E9;
   }
 
-  .hide {
-    display: none;
-  }
-
   @keyframes Show {
     0% {
       display: none;
@@ -142,10 +138,12 @@
     }
   }
 
+  .hide {
+    display: none;
+  }
+
   .show {
     margin: 0 10px;
-
-    transition: .2s all ease;
   }
 
   @media(min-width: 600px) {
