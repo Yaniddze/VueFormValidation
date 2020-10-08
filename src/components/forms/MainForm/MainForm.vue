@@ -239,7 +239,7 @@
 
 <style scoped lang="scss">
   form > div > div {
-    margin: 15px 0;
+    padding: 10px 0;
   }
 
   .error {
